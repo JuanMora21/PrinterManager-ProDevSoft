@@ -10,7 +10,6 @@ export default class extends BaseSchema {
       table.string('email', 254).notNullable()
       table.string('password', 256).notNullable().unique()
       table.integer('role_id').unsigned().references('roles.id')
-      table.integer('library_id').unsigned().references('libraries.id')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

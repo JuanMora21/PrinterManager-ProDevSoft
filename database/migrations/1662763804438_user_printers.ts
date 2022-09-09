@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id')
-      table.integer('printer_id').unsigned().references('3d_ printers.id')
+      table.integer('printer_id').unsigned().references('3d_printers.id')
       table.unique(['user_id', 'printer_id'])
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
