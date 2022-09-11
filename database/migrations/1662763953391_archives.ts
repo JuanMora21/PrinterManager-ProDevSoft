@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('name').notNullable()
       table.string('format').notNullable()
       table.enum('visibility',["Public","Private"]).notNullable()
-      table.integer('category_id').unsigned().references('categories.id')
+      table.integer('category_id').unsigned().references('categories.id').onDelete('CASCADE')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

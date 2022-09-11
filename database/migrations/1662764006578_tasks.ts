@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('name').notNullable()
       table.float("duration_hours").notNullable()
-      table.enum("priority", ["urgent", "important", "not urgent", "not important"]).notNullable()
+      table.enum("priority", ["Urgent", "Important", "Not Urgent", "Not Important"]).notNullable()
       table.integer('archive_id').unsigned().references('archives.id')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

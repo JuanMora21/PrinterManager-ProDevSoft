@@ -1,16 +1,16 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, BelongsTo, belongsTo, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, BelongsTo, belongsTo, column, HasMany, hasMany, HasOne, hasOne, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import Profile from './Profile';
 import Role from './Role';
 import ApiToken from './ApiToken';
 import Hash from '@ioc:Adonis/Core/Hash'
+import Printer3D from './Printer3D';
+import Library from './Library';
+import Reservation from './Reservation';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
-  
-  @column()
-  id_role: number;
 
   @column()
   public name:string;
@@ -21,23 +21,34 @@ export default class User extends BaseModel {
   @column()
   public password:string;
 
+  @column()
+  role_id: number;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasOne(() => Profile, {foreignKey: 'id_user'})
+  @hasOne(() => Profile, {foreignKey: 'user_id'})
   public profile: HasOne<typeof Profile>
 
-  @belongsTo(() => Role, {foreignKey: 'id_role'})
+  @hasOne(() => Library, {foreignKey: 'user_id'})
+  public library: HasOne<typeof Library>
+
+  @belongsTo(() => Role, {foreignKey: 'role_id'})
   public role: BelongsTo<typeof Role>
     
   @hasMany(() => ApiToken,{
-    foreignKey: 'id_user',
+    foreignKey: 'user_id',
   })
   public users: HasMany<typeof ApiToken>
   
+  @hasMany(() => Reservation,{
+    foreignKey: 'user_id',
+  })
+  public reservations: HasMany<typeof Reservation>
+
   @beforeSave()
   public static async hashPassword (theUser: User) {
     if (theUser.$dirty.password) {
@@ -45,4 +56,11 @@ export default class User extends BaseModel {
     }
   }
 
+  @manyToMany(() => Printer3D, {
+    pivotTable: 'user_printers',
+    pivotForeignKey: 'user_id',
+    pivotRelatedForeignKey: 'printer_id',
+    })
+    public printers: ManyToMany<typeof Printer3D>;
+    
 }

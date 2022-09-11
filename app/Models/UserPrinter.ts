@@ -1,21 +1,17 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column} from '@ioc:Adonis/Lucid/Orm'
 
-export default class Profile extends BaseModel {
+export default class UserPrinter extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public user_id: number;
+  public user_id: number
 
   @column()
-  public phone:string;
-
-  @column()
-  public facebook_url:string;
-
-  @column()
-  public instagram_url:string;
+  public printer_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
