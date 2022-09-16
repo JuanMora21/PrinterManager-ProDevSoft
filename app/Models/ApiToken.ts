@@ -11,7 +11,7 @@ export default class ApiToken extends BaseModel {
   @column({ isPrimary: true })
   public id: number
   @column()
-  public id_user: number
+  public user_id: number
 
   @column()
   public name: string
@@ -29,7 +29,7 @@ export default class ApiToken extends BaseModel {
   public expires_at: DateTime
 
   @belongsTo(() => User,{
-    localKey: 'id_user',
+    localKey: 'user_id',
   })
   public rol: BelongsTo<typeof User>
 }

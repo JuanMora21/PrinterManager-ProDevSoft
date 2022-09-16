@@ -7,6 +7,7 @@ import {
   manyToMany,
   ManyToMany} from '@ioc:Adonis/Lucid/Orm'
 import Archive from './Archive';
+import Reservation from './Reservation';
 
   enum taskPriority {
     Urgent = 'Urgent',
@@ -37,12 +38,12 @@ export default class Task extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @manyToMany(() => Task, {
+  @manyToMany(() => Reservation, {
     pivotTable: 'task_items',
     pivotForeignKey: 'task_id',
     pivotRelatedForeignKey: 'reservation_id',
     })
-    public tasks: ManyToMany<typeof Task>;
+    public reservations: ManyToMany<typeof Reservation>;
 
   @hasOne(() => Archive,{
     foreignKey: 'archive_id'

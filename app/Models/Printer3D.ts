@@ -7,6 +7,7 @@ import {
   hasMany,
   HasMany} from '@ioc:Adonis/Lucid/Orm'
 import Reservation from './Reservation'
+import User from './User';
 
 enum printerType {
   Resin = 'Resin',
@@ -40,12 +41,12 @@ export default class Printer3D extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @manyToMany(() => Printer3D, {
+  @manyToMany(() => User, {
     pivotTable: 'user_printers',
     pivotForeignKey: 'printer_id',
     pivotRelatedForeignKey: 'user_id',
     })
-    public printers: ManyToMany<typeof Printer3D>;
+    public users: ManyToMany<typeof User>;
 
   @hasMany(() => Reservation,{
     foreignKey: 'printer_id',
