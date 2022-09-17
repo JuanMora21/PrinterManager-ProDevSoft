@@ -78,11 +78,11 @@ Route.get('/Archives/:id','ArchivesController.show');
 Route.put('/Archives/:id','ArchivesController.update');
 Route.delete('/Archives/:id','ArchivesController.destroy');
 //Printers
-Route.get('/Printers','Printer3DsController.index');
-Route.post('/Printers','Printer3DsController.store');
-Route.get('/Printers/:id','Printer3DsController.show');
-Route.put('/Printers/:id','Printer3DsController.update');
-Route.delete('/Printers/:id','Printer3DsController.destroy');
+Route.get('/Printers','PrintersController.index');
+Route.post('/Printers','PrintersController.store');
+Route.get('/Printers/:id','PrintersController.show');
+Route.put('/Printers/:id','PrintersController.update');
+Route.delete('/Printers/:id','PrintersController.destroy');
 //UserPrinters
 Route.get('/UserPrinters','UserPrintersController.index');
 Route.post('/UserPrinters','UserPrintersController.store');

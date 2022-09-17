@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Encryption from '@ioc:Adonis/Core/Encryption'
 import Profile from 'App/Models/Profile';
+import Role from 'App/Models/Role';
 
 export default class UsersController {
     /**
@@ -38,6 +39,10 @@ export default class UsersController {
         theUser.email=body.email;
         theUser.password=Encryption.encrypt(body.password);
         theUser.role_id=body.role_id;
+        if(body.role_id){
+            body.role_id=params.role_id;
+            await this.setRole(body.role_id);
+        }
         if(body.Profile){
             body.Profile.user_id=params.id;
             await this.setProfile(body.Profile);
@@ -45,6 +50,13 @@ export default class UsersController {
        
         return theUser.save();
     }
+    /**
+     * Elimina a un User basado en el identificador
+     */
+    public async destroy({params}:HttpContextContract) {
+        const theUser:User=await User.findOrFail(params.id);
+        return theUser.delete();
+    }   
     public async setProfile(info_Profile){
         const Profile_User=await Profile.findBy('user_id',info_Profile.user_id );
             if(Profile_User){
@@ -56,11 +68,13 @@ export default class UsersController {
                 await Profile.create(info_Profile);
             }
     }
-    /**
-     * Elimina a un User basado en el identificador
-     */
-    public async destroy({params}:HttpContextContract) {
-        const theUser:User=await User.findOrFail(params.id);
-        return theUser.delete();
-    }    
+    public async setRole(info_Role){
+        const role=await Role.findBy('user_id',info_Role.user_id );
+            if(role){
+                role.name=info_Role.name;
+                role.save();
+            }else{
+                await Role.create(info_Role);
+            }
+    } 
 }

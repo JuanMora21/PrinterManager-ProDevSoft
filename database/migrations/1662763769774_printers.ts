@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = '3d_printers'
+  protected tableName = 'printers'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
@@ -9,8 +9,8 @@ export default class extends BaseSchema {
       table.string('name').notNullable()
       table.string('model').notNullable()
       table.enum('type',["Resin","Filament"]).notNullable()
-      table.integer('beedHeight').notNullable()
-      table.integer('beedWidth').notNullable()
+      table.integer('beed_height').notNullable()
+      table.integer('beed_width').notNullable()
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

@@ -3,10 +3,10 @@ import { BaseModel, beforeSave, BelongsTo, belongsTo, column, HasMany, hasMany, 
 import Profile from './Profile';
 import Role from './Role';
 import ApiToken from './ApiToken';
-import Hash from '@ioc:Adonis/Core/Hash'
-import Printer3D from './Printer3D';
+import Hash from '@ioc:Adonis/Core/Hash';
 import Library from './Library';
 import Reservation from './Reservation';
+import Printer from './Printer';
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -56,11 +56,11 @@ export default class User extends BaseModel {
     }
   }
 
-  @manyToMany(() => Printer3D, {
+  @manyToMany(() => Printer, {
     pivotTable: 'user_printers',
     pivotForeignKey: 'user_id',
     pivotRelatedForeignKey: 'printer_id',
     })
-    public printers: ManyToMany<typeof Printer3D>;
+    public printers: ManyToMany<typeof Printer>;
     
 }

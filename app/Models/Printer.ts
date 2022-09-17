@@ -14,7 +14,7 @@ enum printerType {
   Filament = 'Filament'
 }
 
-export default class Printer3D extends BaseModel {
+export default class Printer extends BaseModel {
   
   
   @column({ isPrimary: true })
@@ -30,10 +30,10 @@ export default class Printer3D extends BaseModel {
   public type:printerType;
 
   @column()
-  beedHeight: number;
+  beed_height: number;
 
   @column()
-  beedWidth: number;
+  beed_width: number;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

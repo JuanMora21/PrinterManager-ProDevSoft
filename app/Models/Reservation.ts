@@ -7,7 +7,7 @@ import {
   ManyToMany,
   manyToMany} from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
-import Printer3D from './Printer3D';
+import Printer from './Printer';
 import Task from './Task';
 
   
@@ -45,8 +45,8 @@ export default class Reservation extends BaseModel {
   @belongsTo(() => User, {foreignKey: 'user_id'})
   public user: BelongsTo<typeof User>
 
-  @belongsTo(() => Printer3D, {foreignKey: 'printer_id'})
-  public printer: BelongsTo<typeof Printer3D>
+  @belongsTo(() => Printer, {foreignKey: 'printer_id'})
+  public printer: BelongsTo<typeof Printer>
 
   @manyToMany(() => Task, {
     pivotTable: 'task_items',
