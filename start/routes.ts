@@ -23,36 +23,17 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+import './routes/Roles'
+import './routes/Permissions'
+import './routes/Users'
+import './routes/Profiles'
+
 //Apitokens
 Route.get('/ApiTokens','ApiTokensController.index');
 Route.post('/ApiTokens','ApiTokensController.store');
 Route.get('/ApiTokens/:id','ApiTokensController.show');
 Route.put('/ApiTokens/:id','ApiTokensController.update');
 Route.delete('/ApiTokens/:id','ApiTokensController.destroy');
-//Users
-Route.get('/Users','UsersController.index');
-Route.post('/Users','UsersController.store');
-Route.get('/Users/:id','UsersController.show');
-Route.put('/Users/:id','UsersController.update');
-Route.delete('/Users/:id','UsersController.destroy');
-//Profiles
-Route.get('/Profiles','ProfilesController.index');
-Route.post('/Profiles','ProfilesController.store');
-Route.get('/Profiles/:id','ProfilesController.show');
-Route.put('/Profiles/:id','ProfilesController.update');
-Route.delete('/Profiles/:id','ProfilesController.destroy');
-//Permissions
-Route.get('/Permissions','PermissionsController.index');
-Route.post('/Permissions','PermissionsController.store');
-Route.get('/Permissions/:id','PermissionsController.show');
-Route.put('/Permissions/:id','PermissionsController.update');
-Route.delete('/Permissions/:id','PermissionsController.destroy');
-//Roles
-Route.get('/Roles','RolesController.index');
-Route.post('/Roles','RolesController.store');
-Route.get('/Roles/:id','RolesController.show');
-Route.put('/Roles/:id','RolesController.update');
-Route.delete('/Roles/:id','RolesController.destroy');
 //PermissionsRoles
 Route.get('/PermissionsRoles','PermissionsRolesController.index');
 Route.post('/PermissionsRoles','PermissionsRolesController.store');
