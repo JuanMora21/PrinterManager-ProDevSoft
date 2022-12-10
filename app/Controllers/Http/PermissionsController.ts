@@ -3,7 +3,7 @@ import Permission from 'App/Models/Permission';
 
 export default class PermissionsController {
     public async index(ctx:HttpContextContract){
-        let Permissions:Permission[]=await Permission.query().preload('roles')
+        let Permissions:Permission[]=await Permission.query()
         return Permissions;
     }
     public async store({request}:HttpContextContract){

@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Printer from 'App/Models/Printer';
 import User from 'App/Models/User';
 import Reservation from '../../Models/Reservation';
-import TaskItem from '../../Models/TaskItem';
+//import TaskItem from '../../Models/TaskItem';
 
 export default class ReservationsController {
      /**
@@ -51,7 +51,7 @@ export default class ReservationsController {
         }
         if(body.TaskItem){
             body.TaskItem.reservation_id=params.id;
-            await this.setTaskItem(body.TaskItem);
+            //await this.setTaskItem(body.TaskItem);
         }
         return theReservation.save();
     }
@@ -89,7 +89,7 @@ export default class ReservationsController {
                 await Printer.create(info_Printer);
             }
     }
-
+    /*
     public async setTaskItem(info_TaskItem){
         const taskItem= await TaskItem.findBy('reservation_id',info_TaskItem.reservation_id );
             if(taskItem){
@@ -100,5 +100,5 @@ export default class ReservationsController {
                 await TaskItem.create(info_TaskItem);
             }
     }
-
+*/
 }

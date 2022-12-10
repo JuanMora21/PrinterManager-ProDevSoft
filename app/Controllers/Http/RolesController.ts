@@ -1,10 +1,11 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Permission from 'App/Models/Permission';
 
 import Role from "App/Models/Role";
 import User from 'App/Models/User';
 export default class RolesContRoleler {
     public async index(ctx:HttpContextContract){
-        let Roles:Role[]=await Role.query().preload('permissions')
+        let Roles:Role[]=await Role.query()
         return Roles;
     }
     public async store({request}:HttpContextContract){
@@ -23,8 +24,7 @@ export default class RolesContRoleler {
     }
    
     public async destroy({params}:HttpContextContract) {
-        let Users= await User.query()
-                                   .where('role_id',params.id)
+        let Users= await User.query().where('role_id',params.id)
         if(Users){
             return {
                 "error":"El Role tiene Users asociados",

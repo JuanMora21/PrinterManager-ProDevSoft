@@ -25,7 +25,7 @@ export default class UsersController {
      * Muestra la información de un solo User
      */
     public async show({params}:HttpContextContract) {
-        let theUser=await User.query().where("id",params.id).preload('profile');
+        let theUser=await User.query().where("id",params.id).preload('role').preload('profile');
         return theUser;
     }
     /**
@@ -39,14 +39,14 @@ export default class UsersController {
         theUser.email=body.email;
         theUser.password=Encryption.encrypt(body.password);
         theUser.role_id=body.role_id;
-        if(body.role_id){
-            body.role_id=params.role_id;
-            await this.setRole(body.role_id);
-        }
+        //console.log(JSON.stringify(body));
+        if(body["role_id"]){
+            await this.setRole(body["role_id"]);
+        }/*
         if(body.Profile){
             body.Profile.user_id=params.id;
             await this.setProfile(body.Profile);
-        }
+        }*/
        
         return theUser.save();
     }
@@ -69,7 +69,8 @@ export default class UsersController {
             }
     }
     public async setRole(info_Role){
-        const role=await Role.findBy('user_id',info_Role.user_id );
+        //console.log("ROLE ID:" + info_Role);
+        const role=await Role.find(info_Role);
             if(role){
                 role.name=info_Role.name;
                 role.save();

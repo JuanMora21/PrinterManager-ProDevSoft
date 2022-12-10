@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Archive from 'App/Models/Archive';
+//import Archive from 'App/Models/Archive';
 import Task from 'App/Models/Task';
 
 export default class TasksController {
@@ -7,7 +7,7 @@ export default class TasksController {
      * Lista todos los Tasks
      */
     public async index(ctx:HttpContextContract){
-        let Tasks:Task[]=await Task.query().preload("archive")
+        let Tasks:Task[]=await Task.query()
         return Tasks;
     }
     /**
@@ -37,7 +37,7 @@ export default class TasksController {
         theTask.priority=body.priority; 
         if(body.Archive){
             body.Archive.archive_id=params.id;
-            await this.setArchive(body.Archive);
+            //await this.setArchive(body.Archive);
         }
         return theTask.save();
     }
@@ -48,7 +48,7 @@ export default class TasksController {
         const theTask:Task=await Task.findOrFail(params.id);
         return theTask.delete();
     }
-
+    /*
     public async setArchive(info_Archive){
         const Archive_User=await Archive.findBy('archive_id',info_Archive.archive_id );
             if(Archive_User){
@@ -61,5 +61,5 @@ export default class TasksController {
                 await Archive.create(info_Archive);
             }
     }
-
+    */
 }

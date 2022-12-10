@@ -8,3 +8,4 @@ Route.group(() => {
     Route.put('/Users/:id','UsersController.update');
     Route.delete('/Users/:id','UsersController.destroy');
 })
+//'auth:api','permission'

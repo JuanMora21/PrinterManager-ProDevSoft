@@ -7,4 +7,4 @@ Route.group(() => {
     Route.get('/Profiles/:id','ProfilesController.show');
     Route.put('/Profiles/:id','ProfilesController.update');
     Route.delete('/Profiles/:id','ProfilesController.destroy');
-})
+})//.middleware(['auth:api','permission'])

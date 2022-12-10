@@ -11,8 +11,8 @@ export default class extends BaseSchema {
       table.string('name').notNullable()
       table.date('start_date').notNullable()
       table.date('end_date').notNullable()
-      table.dateTime('start_time').notNullable()
-      table.dateTime('end_time').notNullable()
+      table.time('start_time').notNullable()
+      table.time('end_time').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

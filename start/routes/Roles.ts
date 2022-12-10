@@ -7,4 +7,4 @@ Route.group(() => {
     Route.get('/Roles/:id','RolesController.show');
     Route.put('/Roles/:id','RolesController.update');
     Route.delete('/Roles/:id','RolesController.destroy');
-})
+})//.middleware([])
